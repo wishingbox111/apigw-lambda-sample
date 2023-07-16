@@ -1,5 +1,5 @@
 resource "aws_api_gateway_rest_api" "example_api" {
-  name = "lambda-api"
+  name = "${var.your_name}-lambda-api"
 }
 resource "aws_api_gateway_resource" "example_resource" {
   rest_api_id = aws_api_gateway_rest_api.example_api.id

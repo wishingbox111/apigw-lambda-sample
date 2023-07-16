@@ -10,7 +10,7 @@ data "aws_iam_policy_document" "lambda_assume_role_policy" {
 }
 
 resource "aws_iam_role" "lambda_role" {
-  name               = "lambda-hw-role"
+  name               = "${var.your_name}-lambda-hw-role"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
 }
 
@@ -21,7 +21,7 @@ data "archive_file" "python_lambda_package" {
 }
 
 resource "aws_lambda_function" "hello_lambda" {
-  function_name    = "lambda-apigw"
+  function_name    = "${var.your_name}-lambda-apigw"
   filename         = "lambda.zip"
   source_code_hash = data.archive_file.python_lambda_package.output_base64sha256
   role             = aws_iam_role.lambda_role.arn
